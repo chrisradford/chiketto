@@ -8,7 +8,7 @@ module Chiketto
       def attr_attrib(*args)
         args.map do |value|
           define_method value.to_s do
-            Chiketto::Attribute.new instance_variable_get("@#{value}")
+            Chiketto::Attribute.new Hash.new(instance_variable_get("@#{value}"))
           end
         end
       end

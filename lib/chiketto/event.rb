@@ -20,7 +20,7 @@ module Chiketto
 
     def ticket_classes
       @ticket_classes.map do |t_class|
-        Chiketto::TicketClass.new t_class
+        Chiketto::TicketClass.new Hash.new(t_class)
       end
     end
 

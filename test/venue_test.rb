@@ -1,8 +1,7 @@
 require 'test_helper'
 
 class VenueTest < MiniTest::Test
-
-  def setup
+  def test_venue_methods_exist
     @venue = Chiketto::Venue.new({
       'id' => '545454',
       'address' => {
@@ -17,13 +16,22 @@ class VenueTest < MiniTest::Test
       'longitude' => '-71.0905626',
       'name' => 'Eventbrite HQ'
     })
-  end
 
-  def test_venue_methods_exist
     assert_respond_to @venue, :id
     assert_respond_to @venue, :address
     assert_respond_to @venue, :latitude
     assert_respond_to @venue, :longitude
     assert_respond_to @venue, :name
+  end
+
+  def test_venue_with_no_address
+    @venue = Chiketto::Venue.new({
+      'id' => '545454',
+      'latitude' => '42.3618641',
+      'longitude' => '-71.0905626',
+      'name' => 'Eventbrite HQ'
+    })
+
+    assert_respond_to @venue.address, :to_s
   end
 end
