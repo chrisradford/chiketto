@@ -15,7 +15,7 @@ module Chiketto
               :changed
 
     def organizer
-      Chiketto::Organizer.new Hash(@organizer)
+      Chiketto::Organizer.new Hash.new(@organizer)
     end
 
     def ticket_classes
@@ -25,7 +25,7 @@ module Chiketto
     end
 
     def venue
-      Chiketto::Venue.new Hash(@venue)
+      Chiketto::Venue.new Hash.new(@venue)
     end
 
     def self.find(id)
