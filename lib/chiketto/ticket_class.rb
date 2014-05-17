@@ -1,6 +1,5 @@
 module Chiketto
   class TicketClass < Resource
-
     attr_accessor :name,
                   :cost,
                   :fee,
@@ -9,9 +8,10 @@ module Chiketto
                   :minimum_quantity,
                   :maximum_quantity,
                   :quantity_total,
-                  :quantity_sold,
-                  :sales_start,
-                  :sales_end
+                  :quantity_sold
+
+    attr_date :sales_start,
+              :sales_end
 
   end
 end

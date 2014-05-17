@@ -1,6 +1,5 @@
 module Chiketto
   class Event < Resource
-
     attr_reader :resource_uri,
                 :url,
                 :capacity,
@@ -10,10 +9,10 @@ module Chiketto
     attr_attrib :description,
                 :name
 
-    attr_date   :start,
-                :end,
-                :created,
-                :changed
+    attr_date :start,
+              :end,
+              :created,
+              :changed
 
     def organizer
       Chiketto::Organizer.new Hash(@organizer)

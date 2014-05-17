@@ -1,22 +1,21 @@
 require 'test_helper'
 
 class TicketClassTest < MiniTest::Test
-
   def setup
     @tclass = Chiketto::TicketClass.new({
-      "id" => "22315349", 
-      "name" => "General Admission", 
-      "cost" => nil, 
-      "fee" => nil, 
-      "currency" => nil, 
-      "free" => true, 
-      "minimum_quantity" => 1, 
-      "maximum_quantity" => nil, 
-      "quantity_total" => 19999, 
-      "quantity_sold" => 1000, 
-      "sales_start" => nil, 
-      "sales_end" =>  "2014-12-01T22:59:59Z"
-    });
+      'id' => '22315349',
+      'name' => 'General Admission',
+      'cost' => nil,
+      'fee' => nil,
+      'currency' => nil,
+      'free' => true,
+      'minimum_quantity' => 1,
+      'maximum_quantity' => nil,
+      'quantity_total' => 19999,
+      'quantity_sold' => 1000,
+      'sales_start' => nil,
+      'sales_end' =>  '2014-12-01T22:59:59Z'
+    })
   end
 
   def test_ticket_class_responds_to_methods
@@ -32,5 +31,10 @@ class TicketClassTest < MiniTest::Test
     assert_respond_to @tclass, :quantity_sold
     assert_respond_to @tclass, :sales_start
     assert_respond_to @tclass, :sales_end
+  end
+
+  def test_ticket_dates_return_datetime
+    assert_kind_of NilClass, @tclass.sales_start
+    assert_kind_of DateTime, @tclass.sales_end
   end
 end
