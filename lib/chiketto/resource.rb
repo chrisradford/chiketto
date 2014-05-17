@@ -19,8 +19,6 @@ module Chiketto
       JSON.parse resource.read
     end
 
-    private
-
     def self.endpoint(uri)
       ENDPOINT + uri + token
     end
