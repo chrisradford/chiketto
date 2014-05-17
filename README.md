@@ -23,10 +23,14 @@ Or install it yourself as:
 ## Usage
 
 ```
-Chiketto.token = YOUR_API_TOKEN
+Chiketto.token = EVENTBRITE_API_TOKEN
+```
 
-event = Chiketto::Event.find 12
-Chiketto::Event::Attendees event or Chiketto::Event::Attendees 12
+or Chiketto will read from the `EVENTBRITE_API_TOKEN` enviroment variable if this is set.
+
+```
+event = Chiketto::Event.find 123456
+Chiketto::Event::Attendees event or Chiketto::Event::Attendees 123456
 
 Chiketto::Event.search 'name'
 ```
