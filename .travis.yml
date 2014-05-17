@@ -5,4 +5,5 @@ rvm:
 - 2.1.2
 env:
   global:
-    secure: awI4Vmf+oFJC8CToe+yZ7in2By5m290LFBhYNyMNVmZxSfSqS5eDTKOeCWltiA5bZmqEbV+lVxh7YkeBKeZFtUPiDflAXMV57pCDD/CKvThpxHMnCwOEhlBu6GbBbCXAvs+2oPtkIYRpkDaAwFPrUcNrnVwCrdLp7zaXgjpxC8Q=
+  - secure: awI4Vmf+oFJC8CToe+yZ7in2By5m290LFBhYNyMNVmZxSfSqS5eDTKOeCWltiA5bZmqEbV+lVxh7YkeBKeZFtUPiDflAXMV57pCDD/CKvThpxHMnCwOEhlBu6GbBbCXAvs+2oPtkIYRpkDaAwFPrUcNrnVwCrdLp7zaXgjpxC8Q=
+  - secure: CuwWjtzRsPz4suem7KhRj7CVUEiscBUx7lMB+TEKi0zLeXtJNLsa6qvW866njDRBhw3kUD8jClmcKrAjLL/6/LUDXDdn83x6VEmcIK7yMQd3fR7OqhYnfu1OxDxzI+ed4hcA9UwYzdPIDBXCo/jNB3wDqyeDpLwTly+jtKh8tDE=
