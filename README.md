@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/chrisradford/chiketto.svg?branch=master)](https://travis-ci.org/chrisradford/chiketto)
 [![Code Climate](https://codeclimate.com/github/chrisradford/chiketto.png)](https://codeclimate.com/github/chrisradford/chiketto)
-[![Coverage Status](https://img.shields.io/coveralls/chrisradford/chiketto.svg)](https://coveralls.io/r/chrisradford/chiketto?branch=master)
+[![Coverage Status](https://coveralls.io/repos/chrisradford/chiketto/badge.png?branch=master)](https://coveralls.io/r/chrisradford/chiketto?branch=master)
 
 # チケット - Chiketto
 
