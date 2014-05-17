@@ -1,10 +1,12 @@
 [![Build Status](https://travis-ci.org/chrisradford/chiketto.svg?branch=master)](https://travis-ci.org/chrisradford/chiketto)
 [![Code Climate](https://codeclimate.com/github/chrisradford/chiketto.png)](https://codeclimate.com/github/chrisradford/chiketto)
-[![Coverage Status](https://coveralls.io/repos/chrisradford/chiketto/badge.png)](https://coveralls.io/r/chrisradford/chiketto)
+[![Coverage Status](https://img.shields.io/coveralls/chrisradford/chiketto.svg)](https://coveralls.io/r/chrisradford/chiketto?branch=cr-event-find)
 
 # チケット - Chiketto
 
 Chiketto is a ruby gem for interacting with the Eventbrite V3 API, chiketto in Japanese literally means 'Ticket' and seems like a reasonable name given most of the obvious options are already taken.
+
+**This Gem is still very much a work in progress and is not recommended for production use**
 
 ## Installation
 
