@@ -3,6 +3,5 @@ module Chiketto
     attr_accessor :name
 
     attr_attrib :description
-
   end
 end

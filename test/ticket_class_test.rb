@@ -2,8 +2,7 @@ require 'test_helper'
 
 class TicketClassTest < MiniTest::Test
   def setup
-    @tclass = Chiketto::TicketClass.new({
-      'id' => '22315349',
+    @tclass = Chiketto::TicketClass.new 'id' => '22315349',
       'name' => 'General Admission',
       'cost' => nil,
       'fee' => nil,
@@ -15,7 +14,6 @@ class TicketClassTest < MiniTest::Test
       'quantity_sold' => 1000,
       'sales_start' => nil,
       'sales_end' =>  '2014-12-01T22:59:59Z'
-    })
   end
 
   def test_ticket_class_responds_to_methods

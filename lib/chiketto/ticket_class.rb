@@ -12,6 +12,5 @@ module Chiketto
 
     attr_date :sales_start,
               :sales_end
-
   end
 end

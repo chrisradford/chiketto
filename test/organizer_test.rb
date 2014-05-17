@@ -2,14 +2,12 @@ require 'test_helper'
 
 class OrganizerTest < MiniTest::Test
   def setup
-    @organizer = Chiketto::Organizer.new({
-      'description' => {
+    @organizer = Chiketto::Organizer.new 'description' => {
         'text' => 'Description of the Example Organizer', 
         'html' => '<p>Description of the Example Organizer</p>'
       }, 
       'id' => '1667263718', 
       'name' => 'Example Organizer'
-    })
   end
 
   def test_responds_to_methods

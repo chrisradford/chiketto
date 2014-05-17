@@ -2,7 +2,7 @@ require 'test_helper'
 
 class AttributeTest < MiniTest::Test
   def setup
-    @attrib = Chiketto::Attribute.new({ 'text' => 'Test', 'html' => '<p>Test</p>' })
+    @attrib = Chiketto::Attribute.new 'text' => 'Test', 'html' => '<p>Test</p>'
   end
 
   def test_attribute_accepts_and_returns_values

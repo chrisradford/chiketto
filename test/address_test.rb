@@ -2,14 +2,12 @@ require 'test_helper'
 
 class AddressTest < MiniTest::Test
   def setup
-    @address = Chiketto::Address.new({
-      'city' => 'San Francisco',
+    @address = Chiketto::Address.new 'city' => 'San Francisco',
       'country' => 'US',
       'region' => 'CA',
       'address_1' => '651 Brannan',
       'address_2' => 'Suite 110',
       'country_name' => 'United States'
-    })
   end
 
   def test_responds_to_methods
