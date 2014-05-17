@@ -2,32 +2,36 @@ module Chiketto
   class Event < Resource
 
     attr_reader :resource_uri,
-                :organizer,
-                :venue,
-                :ticket_classes,
                 :url,
-                :start,
-                :end,
-                :created,
-                :changed,
-                :timezone,
                 :capacity,
                 :categories,
                 :status
 
-    def name
-      Chiketto::Attribute.new @name
+    attr_attrib :description,
+                :name
+
+    attr_date   :start,
+                :end,
+                :created,
+                :changed
+
+    def organizer
+      Chiketto::Organizer.new Hash(@organizer)
     end
 
-    def description
-      Chiketto::Attribute.new @description
-    end
-
-    class << self
-      def find(id)
-        event = get "events/#{id}"
-        Event.new event
+    def ticket_classes
+      @ticket_classes.map do |t_class|
+        Chiketto::TicketClass.new t_class
       end
+    end
+
+    def venue
+      Chiketto::Venue.new Hash(@venue)
+    end
+
+    def self.find(id)
+      event = get "events/#{id}"
+      Event.new event
     end
   end
 end

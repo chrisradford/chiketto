@@ -17,4 +17,14 @@ class AttributeTest < MiniTest::Test
     assert_equal 'Test', @attrib.to_s
     assert_equal 'Test', "#{@attrib}"
   end
+
+  def test_html_falls_back_to_text
+    attrib = Chiketto::Attribute.new 'text' => 'Test'
+    assert_equal 'Test', attrib.html
+  end
+
+  def test_text_falls_back_to_empty_string
+    attrib = Chiketto::Attribute.new
+    assert_equal '', attrib.text
+  end
 end

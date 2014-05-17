@@ -3,6 +3,8 @@ require 'open-uri'
 
 module Chiketto
   class Resource
+    include Chiketto::AttrDSL
+
     attr_reader :id
 
     def initialize(args)
@@ -11,22 +13,20 @@ module Chiketto
       end
     end
 
-    class << self
-      def get(uri)
-        uri = endpoint uri
-        resource = open uri
-        JSON.parse resource.read
-      end
+    def self.get(uri)
+      uri = endpoint uri
+      resource = open uri
+      JSON.parse resource.read
+    end
 
-      private
+    private
 
-      def endpoint(uri)
-        ENDPOINT + uri + token
-      end
+    def self.endpoint(uri)
+      ENDPOINT + uri + token
+    end
 
-      def token
-        "?token=#{ENV['EVENTBRITE_API_TOKEN']}"
-      end
+    def self.token
+      "?token=#{ENV['EVENTBRITE_API_TOKEN']}"
     end
   end
 end
