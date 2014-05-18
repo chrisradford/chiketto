@@ -24,17 +24,30 @@ Or install it yourself as:
 
 ## Usage
 
-```
-Chiketto.token = EVENTBRITE_API_TOKEN
-```
+Chiketto will read your API access token from the `EVENTBRITE_API_TOKEN` enviroment variable, at some point it will allow this to be set explicitly.
 
-or Chiketto will read from the `EVENTBRITE_API_TOKEN` enviroment variable if this is set.
+Chiketto allows you to acces data from the Eventbrite API and formats it as Ruby objects for use within your application.
+
+For example, once you've found an event on the API, Chiketto provides a simple interface for the various pieces of data to make working with it easier.
 
 ```
 event = Chiketto::Event.find 123456
-Chiketto::Event::Attendees event or Chiketto::Event::Attendees 123456
+event.name # => 'Event Name'
+event.name.html # => '<p>Event Name</p>'
+event.organizer # => Chicketto::Organizer
+event.organizer.name # => 'Organizer Name'
+```
 
+You can also use the search endpoint on the API to look up events and have an Array of events returned:
+
+```
 Chiketto::Event.search 'name'
+```
+
+Finally, for now, Chiketto allows you to list out all the possible Categories on the Eventbrite API, returning an Array of Category objects.
+
+```
+Chiketto::Category.list
 ```
 
 ## Contributing
