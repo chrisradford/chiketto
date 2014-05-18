@@ -5,7 +5,7 @@ class Hash
 
     each do |k, v|
       if v.is_a?(Hash)
-        stack << [k,v]
+        stack << [k, v]
       else
         params << "#{k}=#{CGI::escape(v)}&"
       end

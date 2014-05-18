@@ -13,7 +13,7 @@ module Chiketto
       end
     end
 
-    def self.get(uri, params={})
+    def self.get(uri, params = {})
       uri = endpoint(uri) + query(params)
       resource = open uri
       JSON.parse resource.read

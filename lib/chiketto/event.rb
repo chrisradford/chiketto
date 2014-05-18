@@ -34,7 +34,7 @@ module Chiketto
     end
 
     def self.search(params = {})
-      events = get "events/search", params
+      events = get 'events/search', params
       events['events'].map { |event| Event.new event }
     end
   end
