@@ -10,9 +10,11 @@ module Chiketto
   require 'chiketto/address'
   require 'chiketto/attendee'
   require 'chiketto/category'
+  require 'chiketto/email'
   require 'chiketto/event'
   require 'chiketto/organizer'
   require 'chiketto/ticket_class'
+  require 'chiketto/user'
   require 'chiketto/venue'
 
   class << self
