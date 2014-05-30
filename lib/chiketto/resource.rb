@@ -28,7 +28,7 @@ module Chiketto
     end
 
     def self.token
-      "?token=#{ENV['EVENTBRITE_API_TOKEN']}"
+      "?token=#{Chiketto.api_key}"
     end
   end
 end

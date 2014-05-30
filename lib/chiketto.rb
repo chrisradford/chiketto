@@ -14,4 +14,12 @@ module Chiketto
   require 'chiketto/ticket_class'
   require 'chiketto/venue'
 
+  class << self
+    attr_writer :api_key
+
+    def api_key
+      @api_key || ENV['EVENTBRITE_API_TOKEN']
+    end
+  end
+
 end
