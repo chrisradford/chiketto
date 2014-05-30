@@ -8,6 +8,7 @@ module Chiketto
   require 'chiketto/attr_attribute'
   require 'chiketto/resource'
   require 'chiketto/address'
+  require 'chiketto/attendee'
   require 'chiketto/category'
   require 'chiketto/event'
   require 'chiketto/organizer'

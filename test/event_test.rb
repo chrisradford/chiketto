@@ -80,4 +80,20 @@ class EventTest < MiniTest::Test
     assert_kind_of Array, @events
     assert_kind_of Chiketto::Event, @events.first
   end
+
+  def test_attendees_returns_an_array_of_attendees
+    find_event
+    VCR.use_cassette 'event-attendees' do
+      @attendees = @event.attendees
+    end
+    assert_kind_of Array, @attendees
+  end
+
+  def test_attendees_returns_an_array_of_attendees_attending
+    find_event
+    VCR.use_cassette 'event-attendees-attending' do
+      @attendees = @event.attendees status: 'attending'
+    end
+    assert_kind_of Array, @attendees
+  end
 end

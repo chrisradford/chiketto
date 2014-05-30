@@ -14,6 +14,21 @@ module Chiketto
               :created,
               :changed
 
+    def self.find(id)
+      event = get "events/#{id}"
+      Event.new event
+    end
+
+    def self.search(params = {})
+      events = get 'events/search', params
+      events['events'].map { |event| Event.new event }
+    end
+
+    def attendees(params = {})
+      attendees = Chiketto::Event.find_attendees @id, params
+      attendees['attendees'].map { |att| Attendee.new att }
+    end
+
     def organizer
       Chiketto::Organizer.new Hash.new(@organizer)
     end
@@ -28,14 +43,10 @@ module Chiketto
       Chiketto::Venue.new Hash.new(@venue)
     end
 
-    def self.find(id)
-      event = get "events/#{id}"
-      Event.new event
-    end
+    private
 
-    def self.search(params = {})
-      events = get 'events/search', params
-      events['events'].map { |event| Event.new event }
+    def self.find_attendees(id, params)
+      attendees = get "events/#{id}/attendees", params
     end
   end
 end
