@@ -17,6 +17,8 @@ module Chiketto
       uri = endpoint(uri) + query(params)
       resource = open uri
       JSON.parse resource.read
+    rescue OpenURI::HTTPError => e
+      raise Chiketto::APIError e
     end
 
     def self.endpoint(uri)

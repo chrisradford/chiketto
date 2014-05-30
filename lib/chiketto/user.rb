@@ -10,11 +10,11 @@ module Chiketto
     end
 
     def email
-      emails.reject { |email| email.primary }.first
+      emails.detect { |email| email.primary }
     end
 
     def emails
-      @emails.map { |email| Chiketto::Email.new Hash.new(email) }
+      @emails.map { |email| Chiketto::Email.new email }
     end
   end
 end
