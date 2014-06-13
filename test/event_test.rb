@@ -44,6 +44,8 @@ class EventTest < MiniTest::Test
     find_event
     assert_respond_to @event.name, :html
     assert_respond_to @event.name, :text
+    refute @event.name.html.empty?, "Should not return an empty name"
+    refute @event.name.text.empty?, "Should not return an empty name"
   end
 
   def test_description_attribute_is_valid
