@@ -5,7 +5,7 @@ module Chiketto
                   :name
 
     def address
-      Chiketto::Address.new Hash.new(@address)
+      Chiketto::Address.new @address.to_h
     end
   end
 end

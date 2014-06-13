@@ -30,17 +30,17 @@ module Chiketto
     end
 
     def organizer
-      Chiketto::Organizer.new Hash.new(@organizer)
+      Chiketto::Organizer.new @organizer.to_h
     end
 
     def ticket_classes
       @ticket_classes.map do |t_class|
-        Chiketto::TicketClass.new Hash.new(t_class)
+        Chiketto::TicketClass.new t_class.to_h
       end
     end
 
     def venue
-      Chiketto::Venue.new Hash.new(@venue)
+      Chiketto::Venue.new @venue.to_h
     end
 
     private
