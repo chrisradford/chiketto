@@ -4,7 +4,7 @@
 
 # チケット - Chiketto
 
-Chiketto is a ruby gem for interacting with the Eventbrite V3 API, chiketto in Japanese literally means 'Ticket' and seems like a reasonable name given most of the obvious options are already taken.
+Chiketto is a ruby gem for interacting with the Eventbrite V3 API, chiketto in Japanese literally means 'Ticket' and seems like a reasonable name given most of the obvious options are already taken. Chiketto works with Ruby 2.0 and above, since this is a new gem it makes little sense to support older, unsupported version of Ruby.
 
 **This Gem is still very much a work in progress and is not recommended for production use**
 
@@ -32,10 +32,10 @@ For example, once you've found an event on the API, Chiketto provides a simple i
 
 ```
 event = Chiketto::Event.find 123456
-event.name # => 'Event Name'
-event.name.html # => '<p>Event Name</p>'
-event.organizer # => Chicketto::Organizer
-event.organizer.name # => 'Organizer Name'
+event.name            # => 'Event Name'
+event.name.html       # => '<p>Event Name</p>'
+event.organizer       # => Chicketto::Organizer
+event.organizer.name  # => 'Organizer Name'
 ```
 
 You can also use the search endpoint on the API to look up events and have an Array of events returned:
