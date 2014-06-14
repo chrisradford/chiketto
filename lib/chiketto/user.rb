@@ -16,5 +16,16 @@ module Chiketto
     def emails
       @emails.map { |email| Chiketto::Email.new email }
     end
+
+    def events(params = {})
+      events = Chiketto::User.find_events @id, params
+      events['events'].map { |e| Chiketto::Event.new e }
+    end
+
+    private
+
+    def self.find_events(id, params)
+      get "users/#{id}/owned_events", params
+    end
   end
 end

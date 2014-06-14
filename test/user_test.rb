@@ -40,4 +40,12 @@ class UserTest < MiniTest::Test
     find_me
     assert_kind_of Chiketto::Email, @user.email
   end
+
+  def test_user_has_events
+    find_me
+
+    VCR.use_cassette 'user-events' do
+      assert_kind_of Chiketto::Event, @user.events.first
+    end
+  end
 end
