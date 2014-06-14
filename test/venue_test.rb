@@ -1,6 +1,13 @@
 require 'test_helper'
 
 class VenueTest < MiniTest::Test
+  def basic_venue
+    @venue = Chiketto::Venue.new 'id' => '545454',
+      'latitude' => '42.3618641',
+      'longitude' => '-71.0905626',
+      'name' => 'Eventbrite HQ'
+  end
+
   def test_venue_methods_exist
     @venue = Chiketto::Venue.new 'id' => '545454',
       'address' => {
@@ -23,11 +30,12 @@ class VenueTest < MiniTest::Test
   end
 
   def test_venue_with_no_address
-    @venue = Chiketto::Venue.new 'id' => '545454',
-      'latitude' => '42.3618641',
-      'longitude' => '-71.0905626',
-      'name' => 'Eventbrite HQ'
-
+    basic_venue
     assert_respond_to @venue.address, :to_s
+  end
+
+  def test_venue_returns_name_for_to_s
+    basic_venue
+    assert_equal @venue.to_s, @venue.name
   end
 end
