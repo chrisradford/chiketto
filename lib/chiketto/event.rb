@@ -46,7 +46,7 @@ module Chiketto
     private
 
     def self.find_attendees(id, params)
-      attendees = get "events/#{id}/attendees", params
+      get "events/#{id}/attendees", params
     end
   end
 end
