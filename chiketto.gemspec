@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["chris@chrisradford.com"]
   spec.summary       = %q{Chiketto is a ruby gem for interacting with the Eventbrite V3 API}
   spec.description   = spec.summary
-  spec.homepage      = "https://github.com/chrisradford/chiketto"
+  spec.homepage      = "https://github.com/chrisradfordltd/chiketto"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
