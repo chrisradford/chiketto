@@ -1,4 +1,11 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in chiketto.gemspec
+group :development, :test do
+  gem "codeclimate-test-reporter", require: nil
+  gem "dotenv"
+  gem "minitest"
+  gem "webmock"
+  gem "vcr"
+end
+
 gemspec
