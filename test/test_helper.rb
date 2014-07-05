@@ -9,8 +9,3 @@ VCR.configure do |c|
   c.cassette_library_dir = 'test/vcr'
   c.hook_into :webmock
 end
-
-if ENV['TRAVIS']
-  require 'codeclimate-test-reporter'
-  CodeClimate::TestReporter.start
-end
