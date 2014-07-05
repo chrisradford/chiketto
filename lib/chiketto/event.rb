@@ -14,6 +14,14 @@ module Chiketto
               :created,
               :changed
 
+    def self.create(params)
+      params[:title] = params.delete(:name) if params[:name]
+      response = Event.post 'event_new', params
+      if response.fetch('process', false)
+        Event.find response['process']['id']
+      end
+    end
+
     def self.find(id)
       event = get "events/#{id}"
       Event.new event
@@ -25,22 +33,31 @@ module Chiketto
     end
 
     def attendees(params = {})
-      attendees = Chiketto::Event.find_attendees @id, params
+      attendees = Event.find_attendees @id, params
       attendees['attendees'].map { |att| Attendee.new att }
     end
 
     def organizer
-      Chiketto::Organizer.new @organizer.to_h
+      Organizer.new @organizer.to_h
     end
 
     def ticket_classes
       @ticket_classes.map do |t_class|
-        Chiketto::TicketClass.new t_class.to_h
+        TicketClass.new t_class.to_h
+      end
+    end
+
+    def update(params)
+      params[:id] = @id
+      params[:title] = params.delete(:name) if params[:name]
+      response = Event.post 'event_update', params
+      if response.fetch('process', false)
+        response['process']['status'].upcase == 'OK'
       end
     end
 
     def venue
-      Chiketto::Venue.new @venue.to_h
+      Venue.new @venue.to_h
     end
 
     private

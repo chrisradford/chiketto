@@ -1,5 +1,6 @@
 module Chiketto
   ENDPOINT = 'https://www.eventbriteapi.com/v3/'
+  LEGACY_ENDPOINT = 'https://www.eventbrite.com/json/'
 
   require 'hash_ext'
 
