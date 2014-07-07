@@ -20,4 +20,11 @@ class OrganizerTest < MiniTest::Test
     assert_respond_to @organizer.description, :html
     assert_respond_to @organizer.description, :text
   end
+
+  def test_can_create_new_organizer
+    VCR.use_cassette 'organizer-create' do
+      organizer = Chiketto::Organizer.create name: 'Test Organizer'
+      assert_kind_of Fixnum, organizer
+    end
+  end
 end

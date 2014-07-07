@@ -48,4 +48,12 @@ class UserTest < MiniTest::Test
       assert_kind_of Chiketto::Event, @user.events.first
     end
   end
+
+  def test_user_has_organizers
+    find_me
+
+    VCR.use_cassette 'user-organizers' do
+      assert_kind_of Chiketto::Organizer, @user.organizers.first
+    end
+  end
 end
