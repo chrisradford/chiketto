@@ -10,6 +10,7 @@ module Chiketto
   require 'chiketto/resource'
   require 'chiketto/address'
   require 'chiketto/attendee'
+  require 'chiketto/attendee_profile'
   require 'chiketto/category'
   require 'chiketto/email'
   require 'chiketto/event'
