@@ -99,6 +99,14 @@ class EventTest < MiniTest::Test
     assert_kind_of Array, @attendees
   end
 
+  def test_attendees_returns_an_array_of_attendees_with_assigned_numbers
+    find_event
+    VCR.use_cassette 'event-attendees-expand-assigned' do
+      @attendees = @event.attendees expand: 'assigned_number'
+    end
+    assert_kind_of Array, @attendees
+  end
+
   def test_updates_event_with_params
     VCR.use_cassette 'event-update' do
       find_event

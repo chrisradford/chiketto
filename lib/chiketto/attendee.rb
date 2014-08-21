@@ -4,7 +4,8 @@ module Chiketto
                   :status,
                   :ticket_class_id,
                   :event_id,
-                  :order_id
+                  :order_id,
+                  :assigned_number
 
     attr_date :changed,
               :created

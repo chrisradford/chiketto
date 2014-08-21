@@ -10,6 +10,7 @@ class AttendeeTest < MiniTest::Test
     assert_respond_to attendee, :event_id
     assert_respond_to attendee, :order_id
     assert_respond_to attendee, :addresses
+    assert_respond_to attendee, :assigned_number
   end
 
   def test_attr_date_types
@@ -28,5 +29,10 @@ class AttendeeTest < MiniTest::Test
     attendee = Chiketto::Attendee.new addresses: { home: {} }
     assert_kind_of Hash, attendee.addresses
     assert_kind_of Chiketto::Address, attendee.addresses.values.first
+  end
+
+  def test_assigned_number_is_handled
+    attendee = Chiketto::Attendee.new assigned_number: 1
+    assert_equal attendee.assigned_number, 1
   end
 end
