@@ -7,7 +7,9 @@ class AddressTest < MiniTest::Test
       'region' => 'CA',
       'address_1' => '651 Brannan',
       'address_2' => 'Suite 110',
-      'country_name' => 'United States'
+      'country_name' => 'United States',
+      'latitude' => '42.3618641',
+      'longitude' => '-71.0905626'
   end
 
   def test_responds_to_methods
@@ -17,6 +19,8 @@ class AddressTest < MiniTest::Test
     assert_respond_to @address, :address_1
     assert_respond_to @address, :address_2
     assert_respond_to @address, :country_name
+    assert_respond_to @address, :longitude
+    assert_respond_to @address, :latitude
   end
 
   def test_responds_to_string_method

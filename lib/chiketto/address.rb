@@ -5,7 +5,9 @@ module Chiketto
                   :region,
                   :address_1,
                   :address_2,
-                  :country_name
+                  :country_name,
+                  :longitude,
+                  :latitude
 
     def to_s
       [@address_1, @address_2, @city, @region, @country].
