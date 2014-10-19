@@ -4,7 +4,9 @@ module Chiketto
                 :url,
                 :capacity,
                 :categories,
-                :status
+                :status,
+                :logo,
+                :logo_url
 
     attr_attrib :description,
                 :name

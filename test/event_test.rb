@@ -38,6 +38,8 @@ class EventTest < MiniTest::Test
     assert_respond_to @event, :capacity
     assert_respond_to @event, :categories
     assert_respond_to @event, :status
+    assert_respond_to @event, :logo
+    assert_respond_to @event, :logo_url
   end
 
   def test_name_attribute_is_valid
