@@ -9,7 +9,6 @@ class AttendeeTest < MiniTest::Test
     assert_respond_to attendee, :profile
     assert_respond_to attendee, :event_id
     assert_respond_to attendee, :order_id
-    assert_respond_to attendee, :addresses
     assert_respond_to attendee, :assigned_number
   end
 
@@ -23,12 +22,6 @@ class AttendeeTest < MiniTest::Test
   def test_attendee_returns_profile
     attendee = Chiketto::Attendee.new
     assert_kind_of Chiketto::AttendeeProfile, attendee.profile
-  end
-
-  def test_addresses_returns_an_addresses_array
-    attendee = Chiketto::Attendee.new addresses: { home: {} }
-    assert_kind_of Hash, attendee.addresses
-    assert_kind_of Chiketto::Address, attendee.addresses.values.first
   end
 
   def test_assigned_number_is_handled

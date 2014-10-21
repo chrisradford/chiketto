@@ -17,5 +17,12 @@ class AttendeeProfileTest < MiniTest::Test
     assert_respond_to attendee_profile, :gender
     assert_respond_to attendee_profile, :birth_date
     assert_respond_to attendee_profile, :cell_phone
+    assert_respond_to attendee_profile, :addresses
+  end
+
+  def test_addresses_returns_an_addresses_array
+    attendee = Chiketto::AttendeeProfile.new addresses: { home: {} }
+    assert_kind_of Hash, attendee.addresses
+    assert_kind_of Chiketto::Address, attendee.addresses.values.first
   end
 end
