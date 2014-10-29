@@ -19,8 +19,12 @@ module Chiketto
             date = instance_variable_get("@#{value}")
             return date if date.nil?
 
-            date = date['utc'] if date.is_a?(Hash)
-            DateTime.strptime date, '%FT%TZ'
+            if date.is_a?(Hash)
+              date = date['local']
+              DateTime.strptime date, '%FT%T'
+            else
+              DateTime.strptime date, '%FT%TZ'
+            end
           end
         end
       end
