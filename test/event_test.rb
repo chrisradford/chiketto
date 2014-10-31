@@ -91,6 +91,7 @@ class EventTest < MiniTest::Test
       @attendees = @event.attendees
     end
     assert_kind_of Array, @attendees
+    refute @attendees.empty?, 'Should return more than 0 attendees'
   end
 
   def test_attendees_returns_an_array_of_attendees_attending

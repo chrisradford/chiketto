@@ -35,8 +35,8 @@ module Chiketto
     end
 
     def attendees(params = {})
-      attendees = Event.find_attendees @id, params
-      attendees['attendees'].map { |att| Attendee.new att }
+      attendees = Event.paginated_attendees @id, params
+      attendees.map { |att| Attendee.new att }
     end
 
     def organizer
@@ -66,6 +66,20 @@ module Chiketto
 
     def self.find_attendees(id, params)
       get "events/#{id}/attendees", params
+    end
+
+    def self.paginated_attendees(id, params, page = 1, attendees = [])
+      response = Event.find_attendees id, params.merge(page: page.to_s)
+      attendees.concat response['attendees']
+      if should_paginate(response['pagination'])
+        Event.paginated_attendees id, params, page + 1, attendees
+      else
+        attendees
+      end
+    end
+
+    def self.should_paginate(pagination)
+      pagination['page_count'] > pagination['page_number']
     end
   end
 end
