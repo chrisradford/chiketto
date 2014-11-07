@@ -5,7 +5,8 @@ module Chiketto
                   :ticket_class_id,
                   :event_id,
                   :order_id,
-                  :assigned_number
+                  :assigned_number,
+                  :answers
 
     attr_date :changed,
               :created
