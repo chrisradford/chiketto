@@ -22,9 +22,17 @@ class OrganizerTest < MiniTest::Test
   end
 
   def test_can_create_new_organizer
-    VCR.use_cassette 'organizer-create' do
-      organizer = Chiketto::Organizer.create name: 'Test Organizer'
+    VCR.use_cassette 'organizer-create-new' do
+      organizer = Chiketto::Organizer.create name: 'New Organizer'
       assert_kind_of Fixnum, organizer
+    end
+  end
+
+  def test_cannot_create_an_existing_organizer
+    VCR.use_cassette 'organizer-create' do
+      assert_raises RuntimeError do
+        Chiketto::Organizer.create name: 'Test Organizer'
+      end
     end
   end
 end
