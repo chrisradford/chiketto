@@ -27,4 +27,10 @@ class AttributeTest < MiniTest::Test
     attrib = Chiketto::Attribute.new
     assert_equal '', attrib.text
   end
+
+  def test_attribute_handles_nil_correctly
+    attrib = Chiketto::Attribute.new nil
+    assert_equal '', attrib.text
+    assert_equal '', attrib.html
+  end
 end

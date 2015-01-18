@@ -3,6 +3,7 @@ module Chiketto
     attr_accessor :text, :html
 
     def initialize(hash = {})
+      hash ||= {}
       @text = hash.fetch('text') { '' }
       @html = hash.fetch('html') { @text }
     end
