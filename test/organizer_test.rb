@@ -3,10 +3,10 @@ require 'test_helper'
 class OrganizerTest < MiniTest::Test
   def setup
     @organizer = Chiketto::Organizer.new 'description' => {
-        'text' => 'Description of the Example Organizer', 
+        'text' => 'Description of the Example Organizer',
         'html' => '<p>Description of the Example Organizer</p>'
-      }, 
-      'id' => '1667263718', 
+      },
+      'id' => '1667263718',
       'name' => 'Example Organizer'
   end
 
@@ -21,12 +21,12 @@ class OrganizerTest < MiniTest::Test
     assert_respond_to @organizer.description, :text
   end
 
-  def test_can_create_new_organizer
-    VCR.use_cassette 'organizer-create-new' do
-      organizer = Chiketto::Organizer.create name: 'New Organizer'
-      assert_kind_of Fixnum, organizer
-    end
-  end
+  # def test_can_create_new_organizer
+  #   VCR.use_cassette 'organizer-create-new' do
+  #     organizer = Chiketto::Organizer.create name: 'New Organizer'
+  #     assert_kind_of Fixnum, organizer
+  #   end
+  # end
 
   def test_cannot_create_an_existing_organizer
     VCR.use_cassette 'organizer-create' do
