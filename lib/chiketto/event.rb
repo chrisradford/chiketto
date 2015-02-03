@@ -39,6 +39,10 @@ module Chiketto
       attendees.map { |att| Attendee.new att }
     end
 
+    def listed?
+      !!@listed
+    end
+
     def organizer
       Organizer.new @organizer.to_h
     end

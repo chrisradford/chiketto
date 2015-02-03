@@ -38,6 +38,7 @@ class EventTest < MiniTest::Test
     assert_respond_to @event, :capacity
     assert_respond_to @event, :categories
     assert_respond_to @event, :status
+    assert_respond_to @event, :listed?
     assert_respond_to @event, :logo
     assert_respond_to @event, :logo_url
   end
@@ -77,6 +78,11 @@ class EventTest < MiniTest::Test
     assert_kind_of DateTime, @event.start
     assert_kind_of DateTime, @event.created
     assert_kind_of DateTime, @event.changed
+  end
+
+  def test_listed_is_always_set
+    find_event
+    assert_kind_of FalseClass, @event.listed?
   end
 
   def test_search_returns_array_of_events
