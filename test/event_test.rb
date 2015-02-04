@@ -36,7 +36,8 @@ class EventTest < MiniTest::Test
     assert_respond_to @event, :created
     assert_respond_to @event, :changed
     assert_respond_to @event, :capacity
-    assert_respond_to @event, :categories
+    assert_respond_to @event, :category
+    assert_respond_to @event, :subcategory
     assert_respond_to @event, :status
     assert_respond_to @event, :listed?
     assert_respond_to @event, :logo
@@ -57,6 +58,11 @@ class EventTest < MiniTest::Test
     assert_respond_to @event.description, :text
   end
 
+  def test_categories_are_objects
+    find_event
+    assert_kind_of Chiketto::Category, @event.category
+    assert_kind_of Chiketto::Category, @event.subcategory
+  end
   def test_organizer_is_object
     find_event
     assert_kind_of Chiketto::Organizer, @event.organizer

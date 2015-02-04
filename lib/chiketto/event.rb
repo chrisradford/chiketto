@@ -3,7 +3,6 @@ module Chiketto
     attr_reader :resource_uri,
                 :url,
                 :capacity,
-                :categories,
                 :status,
                 :logo,
                 :logo_url
@@ -39,12 +38,20 @@ module Chiketto
       attendees.map { |att| Attendee.new att }
     end
 
+    def category
+      Category.new @category.to_h
+    end
+
     def listed?
       !!@listed
     end
 
     def organizer
       Organizer.new @organizer.to_h
+    end
+
+    def subcategory
+      Category.new @subcategory.to_h
     end
 
     def ticket_classes
