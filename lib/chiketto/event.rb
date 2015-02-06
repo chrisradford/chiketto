@@ -46,6 +46,11 @@ module Chiketto
       !!@listed
     end
 
+    def questions
+      questions = Event.find_questions id
+      questions.map { |question| Question.new question }
+    end
+
     def organizer
       Organizer.new @organizer.to_h
     end
@@ -75,7 +80,11 @@ module Chiketto
 
     private
 
-    def self.find_attendees(id, params)
+    def self.find_questions(id, params = {})
+      get "events/#{id}/questions", params
+    end
+
+    def self.find_attendees(id, params = {})
       get "events/#{id}/attendees", params
     end
 

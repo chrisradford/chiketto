@@ -42,6 +42,7 @@ class EventTest < MiniTest::Test
     assert_respond_to @event, :listed?
     assert_respond_to @event, :logo
     assert_respond_to @event, :logo_url
+    assert_respond_to @event, :questions
   end
 
   def test_name_attribute_is_valid
@@ -63,6 +64,15 @@ class EventTest < MiniTest::Test
     assert_kind_of Chiketto::Category, @event.category
     assert_kind_of Chiketto::Category, @event.subcategory
   end
+
+  def test_questions_are_objects
+    find_event
+    VCR.use_cassette 'event-questions' do
+      assert_kind_of Array, @event.questions
+      assert_kind_of Chiketto::Question, @event.questions.first
+    end
+  end
+
   def test_organizer_is_object
     find_event
     assert_kind_of Chiketto::Organizer, @event.organizer
