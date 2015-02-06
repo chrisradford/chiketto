@@ -48,7 +48,7 @@ module Chiketto
 
     def questions
       questions = Event.find_questions id
-      questions.map { |question| Question.new question }
+      questions['questions'].map { |question| Question.new question }
     end
 
     def organizer
