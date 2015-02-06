@@ -13,6 +13,8 @@ module Chiketto
   require 'chiketto/attendee_profile'
   require 'chiketto/category'
   require 'chiketto/email'
+  require 'chiketto/choice'
+  require 'chiketto/question'
   require 'chiketto/event'
   require 'chiketto/organizer'
   require 'chiketto/ticket_class'
