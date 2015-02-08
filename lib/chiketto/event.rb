@@ -88,14 +88,16 @@ module Chiketto
       get "events/#{id}/attendees", params
     end
 
-    def self.paginated_attendees(id, params, page = 1, attendees = [])
-      response = Event.find_attendees id, params.merge(page: page.to_s)
-      attendees.concat response['attendees']
-      if should_paginate(response['pagination'])
-        Event.paginated_attendees id, params, page + 1, attendees
-      else
-        attendees
+    def self.paginated_attendees(id, params)
+      page = 0
+      attendees = []
+      loop do
+        page += 1
+        response = Event.find_attendees id, params.merge(page: page.to_s)
+        attendees.concat response['attendees']
+        break unless should_paginate(response['pagination'])
       end
+      attendees
     end
 
     def self.should_paginate(pagination)
