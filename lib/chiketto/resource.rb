@@ -49,5 +49,9 @@ module Chiketto
     def self.token
       "/?token=#{Chiketto.api_key}"
     end
+
+    def self.should_paginate(pagination)
+      pagination['page_count'] > pagination['page_number']
+    end
   end
 end

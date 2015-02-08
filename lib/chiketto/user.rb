@@ -18,8 +18,8 @@ module Chiketto
     end
 
     def events(params = {})
-      events = User.find_events @id, params
-      events['events'].map { |e| Event.new e }
+      events = User.paginated_events @id, params
+      events.map { |e| Event.new e }
     end
 
     def organizers
@@ -35,6 +35,18 @@ module Chiketto
 
     def self.find_organizers(id)
       get "users/#{id}/organizers"
+    end
+
+    def self.paginated_events(id, params)
+      page = 0
+      events = []
+      loop do
+        page += 1
+        response = User.find_events id, params.merge(page: page.to_s)
+        events.concat response['events']
+        break unless should_paginate(response['pagination'])
+      end
+      events
     end
   end
 end
