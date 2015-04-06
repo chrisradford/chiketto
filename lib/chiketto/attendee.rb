@@ -6,7 +6,8 @@ module Chiketto
                   :event_id,
                   :order_id,
                   :assigned_number,
-                  :answers
+                  :answers,
+                  :barcodes
 
     attr_date :changed,
               :created
