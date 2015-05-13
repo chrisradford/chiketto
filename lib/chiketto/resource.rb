@@ -53,5 +53,17 @@ module Chiketto
     def self.should_paginate(pagination)
       pagination['page_count'] > pagination['page_number']
     end
+
+    def self.paginated(resource, id, params)
+      page = 0
+      resources = []
+      loop do
+        page += 1
+        response = self.send("find_#{resource}", id, params.merge(page: page.to_s))
+        resources.concat response[resource.to_s]
+        break unless should_paginate(response['pagination'])
+      end
+      resources
+    end
   end
 end

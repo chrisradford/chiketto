@@ -38,15 +38,7 @@ module Chiketto
     end
 
     def self.paginated_events(id, params)
-      page = 0
-      events = []
-      loop do
-        page += 1
-        response = User.find_events id, params.merge(page: page.to_s)
-        events.concat response['events']
-        break unless should_paginate(response['pagination'])
-      end
-      events
+      paginated(:events, id, params)
     end
   end
 end
