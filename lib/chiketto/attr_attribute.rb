@@ -20,7 +20,7 @@ module Chiketto
             return date if date.nil?
 
             if date.is_a?(Hash)
-              date = date['local']
+              date = date['utc']
               DateTime.strptime date, '%FT%T'
             else
               DateTime.strptime date, '%FT%TZ'
