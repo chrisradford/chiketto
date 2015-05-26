@@ -1,5 +1,7 @@
-[![Build Status](https://travis-ci.org/chrisradfordltd/chiketto.svg?branch=master)](https://travis-ci.org/chrisradfordltd/chiketto)
-[![Code Climate](https://codeclimate.com/github/chrisradfordltd/chiketto.png)](https://codeclimate.com/github/chrisradfordltd/chiketto)
+[![Build Status](https://img.shields.io/travis/chrisradfordltd/chiketto.svg?style=flat-square)](https://travis-ci.org/chrisradfordltd/chiketto)
+[![Code Climate](https://img.shields.io/codeclimate/github/chrisradfordltd/chiketto.svg?style=flat-square)](https://codeclimate.com/github/chrisradfordltd/chiketto)
+![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)
+![Version](https://img.shields.io/gem/v/chiketto.svg?style=flat-square)
 
 # チケット - Chiketto
 
