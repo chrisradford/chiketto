@@ -1,9 +1,9 @@
 module Chiketto
   ENDPOINT = 'https://www.eventbriteapi.com/v3/'
-  LEGACY_ENDPOINT = 'https://www.eventbrite.com/json/'
 
   require 'hash_ext'
 
+  require 'chiketto/exception'
   require 'chiketto/version'
   require 'chiketto/attribute'
   require 'chiketto/attr_attribute'
