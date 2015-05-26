@@ -70,8 +70,8 @@ event.organizer.name                    # => 'Organizer Name'
 You can also create new events, or update existing events (using the V1 API) and Chiketto will then return the updated / new event pulled from the V3 API.
 
 ```ruby
-event.update name: 'Name'
-Chiketto::Event.create name: 'Name', start_date: …, end_date: …
+event.update 'event.name.html': 'Name'
+Chiketto::Event.create 'event.name.html': 'Name', 'event.start.timezone': 'Europe/London', 'event.start.utc': …, 'event.end.utc': …, 'event.end.timezone': …, 'event.currency': 'GBP'
 ```
 
 You can also use the search endpoint on the API to look up events and have an Array of events returned:
