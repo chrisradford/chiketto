@@ -21,10 +21,19 @@ class OrganizerTest < MiniTest::Test
     assert_respond_to @organizer.description, :text
   end
 
-  def test_cannot_create_an_existing_organizer
+  def test_creating_an_organizer
     VCR.use_cassette 'organizer-create' do
-      assert_raises RuntimeError do
-        Chiketto::Organizer.create name: 'Test Organizer'
+      name = ENV['CI'] ? Time.new.to_s : 'Test Name'
+      organizer = Chiketto::Organizer.create 'organizer.name' => name
+      assert_kind_of Chiketto::Organizer, organizer
+      assert_equal name, organizer.name
+    end
+  end
+
+  def test_cannot_create_an_existing_organizer
+    VCR.use_cassette 'organizer-create-failure' do
+      assert_raises Chiketto::Exception do
+        Chiketto::Organizer.create 'organizer.name' => 'Test Organizer'
       end
     end
   end

@@ -16,11 +16,8 @@ module Chiketto
               :changed
 
     def self.create(params)
-      params[:title] = params.delete(:name) if params[:name]
-      response = Event.post 'event_new', params
-      if response.fetch('process', false)
-        Event.find response['process']['id']
-      end
+      response = Event.post 'events', params
+      Event.new response
     end
 
     def self.find(id)
@@ -66,12 +63,8 @@ module Chiketto
     end
 
     def update(params)
-      params[:id] = @id
-      params[:title] = params.delete(:name) if params[:name]
-      response = Event.post 'event_update', params
-      if response.fetch('process', false)
-        response['process']['status'].upcase == 'OK'
-      end
+      response = Event.post "events/#{@id}", params
+      Event.new response
     end
 
     def venue

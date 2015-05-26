@@ -5,7 +5,25 @@
 
 Chiketto is a ruby gem for interacting with the Eventbrite V3 API, in Japanese chiketto means 'Ticket'. This library is tested on Ruby 2.0 and above, though may work on 1.9.3.
 
-Chiketto currently falls back to the V1 API when dealing with updating and creating events, though this will change with the 1.0 release.
+## V1 to V3 Update
+
+In version 1.0 Chiketto removed the last remaining uses of the V1 API (creating events and organizers), and moved to exclusively using the V3 API.
+
+Part of the V1 to V3 API change includes a new naming convention for parameters passed to POST requests, the full docs can be found at: http://www.eventbrite.com/developer/v3/
+
+For example pre-V1.0 Chiketto:
+
+```
+Chiketto::Organizer.create name: 'Test Organizer'
+```
+
+Would, in V1.0 become:
+
+```
+Chiketto::Organizer.create 'organizer.name': 'Test Organizer'
+```
+
+In the V3 API version the required fields for each endpoint have also changed, for example, `currency` is now a required field for new events. For full details please refer to the API documentation.
 
 ## Installation
 

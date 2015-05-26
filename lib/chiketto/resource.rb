@@ -21,7 +21,7 @@ module Chiketto
     end
 
     def self.post(uri, params = {})
-      uri = URI.parse legacy_endpoint(uri) + query(params)
+      uri = URI.parse endpoint(uri) + query(params)
       resource = open_post uri
       JSON.parse resource
     end
@@ -30,16 +30,16 @@ module Chiketto
       ENDPOINT + uri + token
     end
 
-    def self.legacy_endpoint(uri)
-      LEGACY_ENDPOINT + uri + "?"
-    end
-
     def self.open_post(uri)
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       request = Net::HTTP::Post.new(uri.request_uri)
       request.add_field 'Authorization', "Bearer #{Chiketto.api_key}"
-      http.request(request).body
+      response = http.request(request)
+      if response.code !~ /20\d/
+        raise Chiketto::Exception, JSON.parse(response.body)
+      end
+      response.body
     end
 
     def self.query(params)

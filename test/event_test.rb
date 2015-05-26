@@ -135,25 +135,32 @@ class EventTest < MiniTest::Test
   def test_updates_event_with_params
     VCR.use_cassette 'event-update' do
       find_event
-      response = @event.update name: 'Movember 2014'
-      assert response, 'Should return true after updating'
+      event = @event.update 'event.name.html' => 'Movember 2014'
+      assert_kind_of Chiketto::Event, event
       @event = Chiketto::Event.find @event.id
       assert_equal 'Movember 2014', @event.name.to_s
     end
   end
 
   def test_update_returns_false_for_invalid_id
-    VCR.use_cassette 'event-update-fail' do
-      event = Chiketto::Event.new id: '12345'
-      response = event.update name: 'Movember 2014'
-      refute response, 'Should return false for invalid id'
+    VCR.use_cassette 'event-update-failure' do
+      assert_raises Chiketto::Exception do
+        event = Chiketto::Event.new id: '12345'
+        event.update 'event.name.html' => 'Movember 2014'
+      end
     end
   end
 
   def test_create_a_new_event
     VCR.use_cassette 'event-create' do
-      event = Chiketto::Event.create name: 'Test Event Creation',
-        start_date: '2037-12-31 22:59:59', end_date: '2037-12-31 23:59:59'
+      event = Chiketto::Event.create({
+        'event.name.html' => 'Test Event Creation',
+        'event.start.utc' => '2018-05-12T02:00:00Z',
+        'event.start.timezone' => 'Europe/London',
+        'event.end.utc' => '2018-05-12T08:00:00Z',
+        'event.end.timezone' => 'Europe/London',
+        'event.currency' => 'USD',
+      })
       assert_kind_of Chiketto::Event, event
       assert_equal 'Test Event Creation', event.name.to_s
     end
@@ -161,8 +168,9 @@ class EventTest < MiniTest::Test
 
   def test_create_an_event_returns_false_on_failure
     VCR.use_cassette 'event-create-failure' do
-      event = Chiketto::Event.create name: 'Test Event'
-      refute event, 'Should return false when API rejects creation'
+      assert_raises Chiketto::Exception do
+        Chiketto::Event.create 'event.name.html' => 'Test Event'
+      end
     end
   end
 end
