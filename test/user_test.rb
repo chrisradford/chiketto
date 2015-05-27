@@ -2,6 +2,7 @@ require 'test_helper'
 
 class UserTest < MiniTest::Test
   USER_ID = 72013652427
+  CONTACT_LIST_ID = 411987
 
   def find_me
     VCR.use_cassette 'user-me' do
@@ -77,7 +78,7 @@ class UserTest < MiniTest::Test
     find_me
 
     VCR.use_cassette 'user-find-contact-list' do
-      assert_kind_of Chiketto::ContactList, @user.find_contact_list(411987)
+      assert_kind_of Chiketto::ContactList, @user.find_contact_list(CONTACT_LIST_ID)
     end
   end
 
