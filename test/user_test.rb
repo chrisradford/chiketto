@@ -49,6 +49,14 @@ class UserTest < MiniTest::Test
     end
   end
 
+  def test_user_has_event_attendees
+    find_me
+
+    VCR.use_cassette 'user-event-attendees' do
+      assert_kind_of Chiketto::Attendee, @user.event_attendees.first
+    end
+  end
+
   def test_user_has_organizers
     find_me
 
