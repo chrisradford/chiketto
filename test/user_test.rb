@@ -72,4 +72,12 @@ class UserTest < MiniTest::Test
       assert_kind_of Chiketto::ContactList, @user.contact_lists.first
     end
   end
+
+  def test_user_find_contact_list_returns_contact_list
+    find_me
+
+    VCR.use_cassette 'user-find-contact-list' do
+      assert_kind_of Chiketto::ContactList, @user.find_contact_list(411987)
+    end
+  end
 end

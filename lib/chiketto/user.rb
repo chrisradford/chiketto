@@ -37,6 +37,11 @@ module Chiketto
       contact_lists.map { |cl| ContactList.new cl }
     end
 
+    def find_contact_list(contact_list_id)
+      contact_list = User.get "users/#{@id}/contact_lists/#{contact_list_id}"
+      ContactList.new contact_list
+    end
+
     private
 
     def self.find_attendees(id, params)
@@ -52,7 +57,7 @@ module Chiketto
     end
 
     def self.find_contact_lists(id, params)
-      get "users/#{id}/contact_lists"
+      get "users/#{id}/contact_lists", params
     end
 
     def self.paginated_events(id, params)
