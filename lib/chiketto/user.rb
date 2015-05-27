@@ -42,6 +42,11 @@ module Chiketto
       ContactList.new contact_list
     end
 
+    def create_contact_list(params)
+      response = User.post "users/#{@id}/contact_lists/", params
+      ContactList.new response
+    end
+
     private
 
     def self.find_attendees(id, params)

@@ -80,4 +80,16 @@ class UserTest < MiniTest::Test
       assert_kind_of Chiketto::ContactList, @user.find_contact_list(411987)
     end
   end
+
+  def test_create_contact_list
+    find_me
+
+    VCR.use_cassette 'user-create-contact-list' do
+      contact_list = @user.create_contact_list({
+        'contact_list.name' => 'Test Contact List Creation'
+      })
+      assert_kind_of Chiketto::ContactList, contact_list
+      assert_equal 'Test Contact List Creation', contact_list.name
+    end
+  end
 end
