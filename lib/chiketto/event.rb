@@ -1,27 +1,17 @@
 module Chiketto
   class Event < Resource
-    attr_reader :resource_uri,
-                :url,
-                :capacity,
-                :status,
-                :logo,
-                :logo_url
-
-    attr_attrib :description,
-                :name
-
-    attr_date :start,
-              :end,
-              :created,
-              :changed
+    attr_reader :resource_uri, :url, :capacity, :status, :logo, :logo_url,
+                :organizer_id, :venue_id, :category_id, :subcategory_id
+    attr_attrib :description, :name
+    attr_date :start, :end, :created, :changed
 
     def self.create(params)
       response = Event.post 'events', params
       Event.new response
     end
 
-    def self.find(id)
-      event = get "events/#{id}"
+    def self.find(id, params = {})
+      event = get "events/#{id}", params
       Event.new event
     end
 
@@ -36,7 +26,7 @@ module Chiketto
     end
 
     def category
-      Category.new @category.to_h
+      @category = find_or_fetch_category(@category, @category_id)
     end
 
     def listed?
@@ -49,14 +39,21 @@ module Chiketto
     end
 
     def organizer
-      Organizer.new @organizer.to_h
+      if @organizer.is_a?(Organizer)
+        @organizer
+      elsif @organizer
+        @organizer = Organizer.new @organizer.to_h
+      elsif @organizer_id
+        @organizer = Organizer.find @organizer_id
+      end
     end
 
     def subcategory
-      Category.new @subcategory.to_h
+      @subcategory = find_or_fetch_category(@subcategory, @subcategory_id)
     end
 
     def ticket_classes
+      return [] unless @ticket_classes
       @ticket_classes.map do |t_class|
         TicketClass.new t_class.to_h
       end
@@ -68,10 +65,26 @@ module Chiketto
     end
 
     def venue
-      Venue.new @venue.to_h
+      if @venue.is_a?(Venue)
+        @venue
+      elsif @venue
+        @venue = Venue.new @venue.to_h
+      elsif @venue_id
+        @venue = Venue.find @venue_id
+      end
     end
 
     private
+
+    def find_or_fetch_category(category, category_id)
+      if category.is_a?(Category)
+        category
+      elsif category
+        Category.new category.to_h
+      elsif category_id
+        Category.find category_id
+      end
+    end
 
     def self.find_questions(id, params = {})
       get "events/#{id}/questions", params

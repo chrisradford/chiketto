@@ -15,13 +15,15 @@ module Chiketto
     end
 
     def self.get(uri, params = {})
-      uri = endpoint(uri) + query(params)
+      uri = endpoint(uri) + build_query_string(params)
       resource = open uri
       JSON.parse resource.read
+    rescue OpenURI::HTTPError => e
+      raise e unless e.message =~ /^404/
     end
 
     def self.post(uri, params = {})
-      uri = URI.parse endpoint(uri) + query(params)
+      uri = URI.parse endpoint(uri) + build_query_string(params)
       resource = open_post uri
       JSON.parse resource
     end
@@ -42,7 +44,7 @@ module Chiketto
       response.body
     end
 
-    def self.query(params)
+    def self.build_query_string(params)
       params.to_params
     end
 

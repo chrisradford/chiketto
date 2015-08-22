@@ -23,7 +23,7 @@ class OrganizerTest < MiniTest::Test
 
   def test_creating_an_organizer
     VCR.use_cassette 'organizer-create' do
-      name = ENV['CI'] ? Time.new.to_s : 'Test Name'
+      name = ENV['CI'] ? Time.new.to_s : 'Test Organizer Name'
       organizer = Chiketto::Organizer.create 'organizer.name' => name
       assert_kind_of Chiketto::Organizer, organizer
       assert_equal name, organizer.name

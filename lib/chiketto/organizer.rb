@@ -4,8 +4,13 @@ module Chiketto
 
     attr_attrib :description
 
+    def self.find(id)
+      response = get "organizers/#{id}"
+      Organizer.new response
+    end
+
     def self.create(params)
-      response = Organizer.post 'organizers', params
+      response = post 'organizers', params
       Chiketto::Organizer.new response
     end
   end

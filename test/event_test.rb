@@ -60,9 +60,11 @@ class EventTest < MiniTest::Test
   end
 
   def test_categories_are_objects
-    find_event
-    assert_kind_of Chiketto::Category, @event.category
-    assert_kind_of Chiketto::Category, @event.subcategory
+    VCR.use_cassette 'event-categories' do
+      find_event
+      assert_kind_of Chiketto::Category, @event.category
+      assert_kind_of Chiketto::Category, @event.subcategory
+    end
   end
 
   def test_questions_are_objects
@@ -74,18 +76,24 @@ class EventTest < MiniTest::Test
   end
 
   def test_organizer_is_object
-    find_event
-    assert_kind_of Chiketto::Organizer, @event.organizer
+    VCR.use_cassette 'event-organizer' do
+      find_event
+      assert_kind_of Chiketto::Organizer, @event.organizer
+    end
   end
 
   def test_venue_is_object
-    find_event
-    assert_kind_of Chiketto::Venue, @event.venue
+    VCR.use_cassette 'event-venue' do
+      find_event
+      assert_kind_of Chiketto::Venue, @event.venue
+    end
   end
 
   def test_ticket_classes_is_object
-    find_event
-    assert_kind_of Chiketto::TicketClass, @event.ticket_classes.first
+    VCR.use_cassette 'event-ticket_classes' do
+      @event = Chiketto::Event.find TEST_ID, expand: 'ticket_classes'
+      assert_kind_of Chiketto::TicketClass, @event.ticket_classes.first
+    end
   end
 
   def test_date_attributes
