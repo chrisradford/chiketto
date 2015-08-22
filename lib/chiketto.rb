@@ -1,8 +1,6 @@
 module Chiketto
   ENDPOINT = 'https://www.eventbriteapi.com/v3/'
 
-  require 'hash_ext'
-
   require 'chiketto/exception'
   require 'chiketto/version'
   require 'chiketto/attribute'

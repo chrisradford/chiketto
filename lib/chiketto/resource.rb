@@ -45,7 +45,29 @@ module Chiketto
     end
 
     def self.build_query_string(params)
-      params.to_params
+      query_params = ''
+      stack = []
+
+      params.each do |k, v|
+        if v.is_a?(Hash)
+          stack << [k, v]
+        else
+          query_params << "#{k}=#{CGI::escape(v)}&"
+        end
+      end
+
+      stack.each do |parent, hash|
+        hash.each do |k, v|
+          if v.is_a?(Hash)
+            stack << ["#{parent}[#{k}]", v]
+          else
+            query_params << "#{parent}[#{k}]=#{CGI::escape(v)}&"
+          end
+        end
+      end
+
+      query_params.chop!
+      "&#{query_params}"
     end
 
     def self.token
