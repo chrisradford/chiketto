@@ -2,6 +2,7 @@ require 'test_helper'
 
 class UserTest < MiniTest::Test
   USER_ID = 72013652427
+  CONTACT_LIST_ID = 411987
 
   def find_me
     VCR.use_cassette 'user-me' do
@@ -62,6 +63,34 @@ class UserTest < MiniTest::Test
 
     VCR.use_cassette 'user-organizers' do
       assert_kind_of Chiketto::Organizer, @user.organizers.first
+    end
+  end
+
+  def test_user_has_contact_lists
+    find_me
+
+    VCR.use_cassette 'user-contact-lists' do
+      assert_kind_of Chiketto::ContactList, @user.contact_lists.first
+    end
+  end
+
+  def test_user_find_contact_list_returns_contact_list
+    find_me
+
+    VCR.use_cassette 'user-find-contact-list' do
+      assert_kind_of Chiketto::ContactList, @user.find_contact_list(CONTACT_LIST_ID)
+    end
+  end
+
+  def test_create_contact_list
+    find_me
+
+    VCR.use_cassette 'user-create-contact-list' do
+      contact_list = @user.create_contact_list({
+        'contact_list.name' => 'Test Contact List Creation'
+      })
+      assert_kind_of Chiketto::ContactList, contact_list
+      assert_equal 'Test Contact List Creation', contact_list.name
     end
   end
 end

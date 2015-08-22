@@ -32,6 +32,21 @@ module Chiketto
       organizers['organizers'].map { |o| Organizer.new o }
     end
 
+    def contact_lists(params = {})
+      contact_lists = User.paginated(:contact_lists, @id, params)
+      contact_lists.map { |cl| ContactList.new cl }
+    end
+
+    def find_contact_list(contact_list_id)
+      contact_list = User.get "users/#{@id}/contact_lists/#{contact_list_id}"
+      ContactList.new contact_list
+    end
+
+    def create_contact_list(params)
+      response = User.post "users/#{@id}/contact_lists/", params
+      ContactList.new response
+    end
+
     private
 
     def self.find_attendees(id, params)
@@ -44,6 +59,10 @@ module Chiketto
 
     def self.find_organizers(id)
       get "users/#{id}/organizers"
+    end
+
+    def self.find_contact_lists(id, params)
+      get "users/#{id}/contact_lists", params
     end
 
     def self.paginated_events(id, params)
